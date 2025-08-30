@@ -1,0 +1,4 @@
+{
+  // Enable automatic injection of `.env` variables into new terminals for this workspace
+  "python.terminal.useEnvFile": true
+}

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="product-title">Product Details - Shopr</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo/favicon.svg" type="image/svg+xml">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style-prefix.css">
+  
+  <!--
+    - chat sdk css
+  -->
+  <link rel="stylesheet" href="./assets/css/chat-sdk.css">
+
+  <!--
+    - product detail css
+  -->
+  <link rel="stylesheet" href="./assets/css/product-detail.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!--
+    - fontawesome link
+  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+  <div class="overlay" data-overlay></div>
+
+  <!--
+    - HEADER
+  -->
+
+  <header>
+    <div class="header-top">
+      <div class="container">
+        <ul class="header-social-container">
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+        </ul>
+
+        <div class="header-alert-news">
+          <p>
+            <b>Free Shipping</b>
+            This Week Order Over - <i class="fa-solid fa-indian-rupee-sign"></i>55
+          </p>
+        </div>
+
+        <div class="header-top-actions">
+          <select name="currency">
+            <option value="inr">INR &rupee;</option>
+            <option value="usd">USD &dollar;</option>
+            <option value="eur">EUR &euro;</option>
+          </select>
+
+          <select name="language">
+            <option value="en-US">English</option>
+            <option value="es-ES">Espa&ntilde;ol</option>
+            <option value="fr">Fran&ccedil;ais</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-main">
+      <div class="container">
+        <a href="index.html" class="header-logo">
+          <img src="./assets/images/logo/logo.svg" alt="Shopr's logo" width="120" height="36">
+        </a>
+
+        <div class="header-search-container">
+          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+          <button class="search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+        </div>
+
+        <div class="header-user-actions">
+          <button class="action-btn">
+            <ion-icon name="person-outline"></ion-icon>
+          </button>
+
+          <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+
+          <button class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="desktop-navigation-menu">
+      <div class="container">
+        <ul class="desktop-menu-category-list">
+          <li class="menu-category">
+            <a href="index.html" class="menu-title">Home</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Categories</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Men's</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Women's</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Jewelry</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Perfume</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Blog</a>
+          </li>
+          <li class="menu-category">
+            <a href="#" class="menu-title">Hot Offers</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!--
+    - MAIN CONTENT
+  -->
+
+  <main>
+    <div class="product-container">
+      <div class="container">
+        
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span id="breadcrumb-category">Products</span>
+          <span>/</span>
+          <span id="breadcrumb-product">Product Details</span>
+        </nav>
+
+        <!-- Product Detail Section -->
+        <div class="product-detail">
+          <div class="product-images">
+            <div class="main-image">
+              <img id="main-product-image" src="" alt="Product Image">
+              <div class="image-zoom-overlay">
+                <ion-icon name="search-outline"></ion-icon>
+              </div>
+            </div>
+            <div class="thumbnail-images">
+              <div class="thumbnail active">
+                <img id="thumb-1" src="" alt="Product Thumbnail">
+              </div>
+              <div class="thumbnail">
+                <img id="thumb-2" src="" alt="Product Thumbnail">
+              </div>
+              <div class="thumbnail">
+                <img id="thumb-3" src="" alt="Product Thumbnail">
+              </div>
+              <div class="thumbnail">
+                <img id="thumb-4" src="" alt="Product Thumbnail">
+              </div>
+            </div>
+          </div>
+
+          <div class="product-info">
+            <div class="product-badges">
+              <span id="product-badge" class="badge"></span>
+            </div>
+            
+            <h1 id="product-name" class="product-title">Product Name</h1>
+            
+            <div class="product-rating">
+              <div class="stars" id="product-stars">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-outline"></ion-icon>
+              </div>
+              <span id="rating-text" class="rating-text">(4.5) 128 Reviews</span>
+            </div>
+
+            <div class="product-price">
+              <span id="current-price" class="current-price">₹4,999</span>
+              <span id="original-price" class="original-price">₹6,999</span>
+              <span id="discount-percent" class="discount">30% OFF</span>
+            </div>
+
+            <div class="product-description">
+              <h3>Description</h3>
+              <p id="product-description-text">
+                Premium quality product with excellent features and modern design. 
+                Perfect for everyday use with comfortable fit and durable materials.
+              </p>
+            </div>
+
+            <div class="product-features">
+              <h3>Key Features</h3>
+              <ul id="product-features-list">
+                <li>High-quality materials</li>
+                <li>Comfortable fit</li>
+                <li>Durable construction</li>
+                <li>Modern design</li>
+              </ul>
+            </div>
+
+            <div class="product-options">
+              <div class="size-selector">
+                <h4>Size:</h4>
+                <div class="size-options">
+                  <button class="size-btn active" data-size="S">S</button>
+                  <button class="size-btn" data-size="M">M</button>
+                  <button class="size-btn" data-size="L">L</button>
+                  <button class="size-btn" data-size="XL">XL</button>
+                </div>
+              </div>
+
+              <div class="color-selector">
+                <h4>Color:</h4>
+                <div class="color-options">
+                  <button class="color-btn active" data-color="black" style="background: #000"></button>
+                  <button class="color-btn" data-color="white" style="background: #fff; border: 1px solid #ddd"></button>
+                  <button class="color-btn" data-color="blue" style="background: #007bff"></button>
+                  <button class="color-btn" data-color="red" style="background: #dc3545"></button>
+                </div>
+              </div>
+
+              <div class="quantity-selector">
+                <h4>Quantity:</h4>
+                <div class="quantity-controls">
+                  <button class="qty-btn minus">-</button>
+                  <input type="number" class="qty-input" value="1" min="1" max="10">
+                  <button class="qty-btn plus">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn-primary add-to-cart">
+                <ion-icon name="bag-add-outline"></ion-icon>
+                Add to Cart
+              </button>
+              <button class="btn-secondary add-to-wishlist">
+                <ion-icon name="heart-outline"></ion-icon>
+                Add to Wishlist
+              </button>
+              <button class="btn-accent buy-now">
+                <ion-icon name="flash-outline"></ion-icon>
+                Buy Now
+              </button>
+            </div>
+
+            <div class="product-meta">
+              <div class="meta-item">
+                <strong>SKU:</strong> <span id="product-sku">SKU001</span>
+              </div>
+              <div class="meta-item">
+                <strong>Category:</strong> <span id="product-category">Fashion</span>
+              </div>
+              <div class="meta-item">
+                <strong>Tags:</strong> <span id="product-tags">trending, popular, new</span>
+              </div>
+              <div class="meta-item">
+                <strong>Availability:</strong> <span id="product-availability" class="in-stock">In Stock</span>
+              </div>
+            </div>
+
+            <div class="shipping-info">
+              <div class="shipping-item">
+                <ion-icon name="car-outline"></ion-icon>
+                <span>Free shipping on orders over ₹999</span>
+              </div>
+              <div class="shipping-item">
+                <ion-icon name="return-down-back-outline"></ion-icon>
+                <span>30-day return policy</span>
+              </div>
+              <div class="shipping-item">
+                <ion-icon name="shield-checkmark-outline"></ion-icon>
+                <span>2-year warranty included</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Related Products -->
+        <section class="related-products">
+          <h2>Related Products</h2>
+          <div class="related-products-grid" id="related-products-container">
+            <!-- Related products will be populated by JavaScript -->
+          </div>
+        </section>
+
+        <!-- Product Reviews -->
+        <section class="product-reviews">
+          <h2>Customer Reviews</h2>
+          <div class="reviews-summary">
+            <div class="average-rating">
+              <span class="rating-number" id="avg-rating">4.5</span>
+              <div class="rating-stars" id="avg-stars">
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star"></ion-icon>
+                <ion-icon name="star-half"></ion-icon>
+              </div>
+              <span class="total-reviews" id="total-reviews">Based on 128 reviews</span>
+            </div>
+          </div>
+          
+          <div class="reviews-list" id="reviews-container">
+            <!-- Reviews will be populated by JavaScript -->
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!--
+    - FOOTER
+  -->
+
+  <footer>
+    <div class="footer-category">
+      <div class="container">
+        <h2 class="footer-category-title">Brand directory</h2>
+        <div class="footer-category-box">
+          <h3 class="category-box-title">Fashion :</h3>
+          <a href="#" class="footer-category-link">T-shirt</a>
+          <a href="#" class="footer-category-link">Shirts</a>
+          <a href="#" class="footer-category-link">shorts & jeans</a>
+          <a href="#" class="footer-category-link">jacket</a>
+          <a href="#" class="footer-category-link">dress & frock</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-nav">
+      <div class="container">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Popular Categories</h2>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Fashion</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Electronic</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Cosmetic</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Health</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Watches</a>
+          </li>
+        </ul>
+
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Products</h2>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        </ul>
+
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Our Company</h2>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Delivery</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Legal Notice</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Terms and conditions</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">About us</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Secure payment</a>
+          </li>
+        </ul>
+
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Services</h2>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Prices drop</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">New products</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Best sales</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Contact us</a>
+          </li>
+          <li class="footer-nav-item">
+            <a href="#" class="footer-nav-link">Sitemap</a>
+          </li>
+        </ul>
+
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+            <address class="content">
+              419 State 414 Rte
+              Beaver Dams, New York(NY), 14812, USA
+            </address>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="call-outline"></ion-icon>
+            </div>
+            <a href="tel:+607936-8058" class="footer-nav-link">(607) 936-8058</a>
+          </li>
+
+          <li class="footer-nav-item flex">
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+            <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
+          </li>
+        </ul>
+
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item">
+            <h2 class="nav-title">Follow Us</h2>
+          </li>
+          <li>
+            <ul class="social-link">
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-linkedin"></ion-icon>
+                </a>
+              </li>
+              <li class="footer-nav-item">
+                <a href="#" class="footer-nav-link">
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <img src="./assets/images/payment.png" alt="payment method" class="payment-img">
+        <p class="copyright">
+          Copyright &copy; <a href="#">Shopr</a> all rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+  
+  <!--
+    - environment configuration (from .env)
+  -->
+  <script src="./config.js"></script>
+  
+  <!--
+    - configuration loader
+  -->
+  <script src="./assets/js/config-loader.js"></script>
+  
+  <!--
+    - mock api service
+  -->
+  <script src="./assets/js/mock-api.js"></script>
+  
+  <!--
+    - real api service
+  -->
+  <script src="./assets/js/real-api-service.js"></script>
+  
+  <!--
+    - advanced ai personality
+  -->
+  <script src="./assets/js/advanced-ai-personality.js"></script>
+  
+  <!--
+    - chat sdk js
+  -->
+  <script src="./assets/js/chat-sdk.js"></script>
+
+  <!--
+    - product detail js
+  -->
+  <script src="./assets/js/product-detail.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
