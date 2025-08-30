@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopr Production Demo - Enterprise AI Shopping Assistant</title>
+    
+    <!-- Production Configuration Meta Tags -->
+    <meta name="shopr-config-environment" content="production">
+    <meta name="shopr-config-analytics-enabled" content="true">
+    <meta name="shopr-config-security-enabled" content="true">
+    <meta name="shopr-config-personalization-enabled" content="true">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/images/logo/favicon.svg" type="image/svg+xml">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="./assets/css/style-prefix.css">
+    <link rel="stylesheet" href="./assets/css/chat-sdk.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .demo-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .demo-header p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .demo-controls {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .demo-controls h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .control-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .demo-btn {
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        
+        .demo-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .demo-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .status-panel {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .status-item {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .status-item.active {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+        }
+        
+        .status-item.inactive {
+            background: #e9ecef;
+            color: #6c757d;
+        }
+        
+        .metrics-panel {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .metric-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+        
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .chat-demo-area {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .chat-demo-area h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .sample-queries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .sample-query {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        
+        .sample-query:hover {
+            border-color: #ff6b6b;
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-container {
+                padding: 20px;
+            }
+            
+            .demo-header h1 {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .control-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1>🚀 Shopr Production Demo</h1>
+            <p>Experience the power of enterprise-grade AI shopping assistant with advanced security, analytics, and personalization</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Enterprise Security</h3>
+                <p>Multi-layer security with real-time threat detection, rate limiting, and encryption</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Advanced Analytics</h3>
+                <p>Comprehensive tracking with performance monitoring and user behavior analysis</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>Smart Personalization</h3>
+                <p>ML-powered recommendations with real-time adaptation and contextual awareness</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>Production Config</h3>
+                <p>Environment-aware configuration with feature flags and performance optimization</p>
+            </div>
+        </div>
+        
+        <div class="status-panel">
+            <h3>🎯 Production Systems Status</h3>
+            <div class="status-grid" id="statusGrid">
+                <div class="status-item inactive">
+                    <div>📊 Analytics</div>
+                    <small>Loading...</small>
+                </div>
+                <div class="status-item inactive">
+                    <div>🔒 Security</div>
+                    <small>Loading...</small>
+                </div>
+                <div class="status-item inactive">
+                    <div>🧠 Personalization</div>
+                    <small>Loading...</small>
+                </div>
+                <div class="status-item inactive">
+                    <div>⚙️ Configuration</div>
+                    <small>Loading...</small>
+                </div>
+            </div>
+        </div>
+        
+        <div class="demo-controls">
+            <h3>🎮 Demo Controls</h3>
+            <div class="control-buttons">
+                <button class="demo-btn" onclick="showHealthCheck()">Health Check</button>
+                <button class="demo-btn" onclick="showMetrics()">View Metrics</button>
+                <button class="demo-btn" onclick="showSecurityStatus()">Security Status</button>
+                <button class="demo-btn" onclick="showPersonalizationInsights()">Personalization Insights</button>
+                <button class="demo-btn" onclick="simulateUserActivity()">Simulate Activity</button>
+                <button class="demo-btn" onclick="toggleDebugMode()">Toggle Debug</button>
+            </div>
+        </div>
+        
+        <div class="metrics-panel" id="metricsPanel" style="display: none;">
+            <h3>📈 Real-Time Metrics</h3>
+            <div class="metrics-grid" id="metricsGrid">
+                <!-- Metrics will be populated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="chat-demo-area">
+            <h3>💬 Try the AI Shopping Assistant</h3>
+            <p>Click the chat bubble in the bottom-right corner to start shopping with AI assistance!</p>
+            
+            <div class="sample-queries">
+                <div class="sample-query" onclick="sendSampleQuery('Show me trending winter jackets')">🔥 Trending Jackets</div>
+                <div class="sample-query" onclick="sendSampleQuery('I need a dress for a wedding')">👗 Wedding Dress</div>
+                <div class="sample-query" onclick="sendSampleQuery('Find comfortable running shoes')">👟 Running Shoes</div>
+                <div class="sample-query" onclick="sendSampleQuery('Best deals on electronics')">💰 Electronics Deals</div>
+                <div class="sample-query" onclick="sendSampleQuery('Recommend something for me')">✨ Personal Recommendations</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="./config.js"></script>
+    <script src="./assets/js/config-loader.js"></script>
+    <script src="./assets/js/mock-api.js"></script>
+    
+    <!-- Production Features Enabler -->
+    <script src="./enable-production-features.js"></script>
+    
+    <!-- Chat SDK Scripts -->
+    <script src="./assets/js/real-api-service.js"></script>
+    <script src="./assets/js/advanced-ai-personality.js"></script>
+    <script src="./assets/js/chat-sdk.js"></script>
+    
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    
+    <script>
+        // Demo functionality
+        let debugMode = false;
+        
+        // Wait for production features to be ready
+        window.addEventListener('shoprProductionReady', function(event) {
+            console.log('🎉 Production features are ready!', event.detail);
+            updateStatusDisplay();
+            
+            // Show welcome message
+            setTimeout(() => {
+                if (window.shoprChat) {
+                    window.shoprChat.addMessage('bot', 
+                        '🚀 <strong>Production Demo Active!</strong><br>' +
+                        'All enterprise features are now enabled:<br>' +
+                        '• 🔒 Advanced Security Protection<br>' +
+                        '• 📊 Real-time Analytics Tracking<br>' +
+                        '• 🧠 Smart Personalization Engine<br>' +
+                        '• ⚙️ Production Configuration<br><br>' +
+                        'Try asking me anything - I\'m powered by enterprise-grade AI!', 
+                        'system'
+                    );
+                }
+            }, 2000);
+        });
+        
+        function updateStatusDisplay() {
+            const status = window.ShoprProduction?.getStatus();
+            if (!status) return;
+            
+            const statusGrid = document.getElementById('statusGrid');
+            statusGrid.innerHTML = `
+                <div class="status-item ${status.analytics ? 'active' : 'inactive'}">
+                    <div>📊 Analytics</div>
+                    <small>${status.analytics ? 'Active' : 'Inactive'}</small>
+                </div>
+                <div class="status-item ${status.security ? 'active' : 'inactive'}">
+                    <div>🔒 Security</div>
+                    <small>${status.security ? 'Active' : 'Inactive'}</small>
+                </div>
+                <div class="status-item ${status.personalization ? 'active' : 'inactive'}">
+                    <div>🧠 Personalization</div>
+                    <small>${status.personalization ? 'Active' : 'Inactive'}</small>
+                </div>
+                <div class="status-item ${status.configuration ? 'active' : 'inactive'}">
+                    <div>⚙️ Configuration</div>
+                    <small>${status.configuration ? 'Active' : 'Inactive'}</small>
+                </div>
+            `;
+        }
+        
+        function showHealthCheck() {
+            const health = window.ShoprProduction?.healthCheck();
+            if (health) {
+                alert(`🏥 Health Check Results:\n\n` +
+                      `Overall Status: ${health.healthy ? '✅ Healthy' : '❌ Issues Detected'}\n` +
+                      `Environment: ${health.environment}\n` +
+                      `Timestamp: ${new Date(health.timestamp).toLocaleString()}\n\n` +
+                      `Systems:\n` +
+                      `• Analytics: ${health.systems.analytics ? '✅' : '❌'}\n` +
+                      `• Security: ${health.systems.security ? '✅' : '❌'}\n` +
+                      `• Personalization: ${health.systems.personalization ? '✅' : '❌'}\n` +
+                      `• Configuration: ${health.systems.configuration ? '✅' : '❌'}\n` +
+                      `• Chat SDK: ${health.systems.chatSDK ? '✅' : '❌'}`);
+            } else {
+                alert('❌ Health check not available - production features may not be loaded');
+            }
+        }
+        
+        function showMetrics() {
+            const metrics = window.ShoprProduction?.getMetrics();
+            const metricsPanel = document.getElementById('metricsPanel');
+            const metricsGrid = document.getElementById('metricsGrid');
+            
+            if (metrics) {
+                metricsGrid.innerHTML = `
+                    <div class="metric-card">
+                        <div class="metric-value">${metrics.sessionId.substring(0, 8)}...</div>
+                        <div class="metric-label">Session ID</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${Math.round((Date.now() - metrics.startTime) / 1000)}s</div>
+                        <div class="metric-label">Session Duration</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${metrics.queueSizes.events}</div>
+                        <div class="metric-label">Events Queued</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${metrics.queueSizes.errors}</div>
+                        <div class="metric-label">Errors Queued</div>
+                    </div>
+                `;
+                metricsPanel.style.display = 'block';
+            } else {
+                alert('📊 Metrics not available - analytics may not be loaded');
+            }
+        }
+        
+        function showSecurityStatus() {
+            const securityStatus = window.ShoprProduction?.getSecurityStatus();
+            if (securityStatus) {
+                alert(`🔒 Security Status:\n\n` +
+                      `Rate Limit Store: ${securityStatus.rateLimitStore} entries\n` +
+                      `Threat Store: ${securityStatus.threatStore} entries\n` +
+                      `Session Store: ${securityStatus.sessionStore} sessions\n` +
+                      `Security Events: ${securityStatus.securityEvents} logged\n` +
+                      `Encryption Ready: ${securityStatus.encryptionReady ? '✅' : '❌'}\n` +
+                      `Secure Context: ${securityStatus.secureContext ? '✅' : '❌'}`);
+            } else {
+                alert('🔒 Security status not available - security manager may not be loaded');
+            }
+        }
+        
+        function showPersonalizationInsights() {
+            const userId = window.shoprChat?.config?.userId || 'demo-user';
+            const insights = window.ShoprProduction?.getPersonalizationInsights(userId);
+            
+            if (insights) {
+                const topCategories = insights.profile.topCategories.map(c => `${c.category} (${c.score.toFixed(1)})`).join(', ');
+                const topBrands = insights.profile.topBrands.map(b => `${b.brand} (${b.score.toFixed(1)})`).join(', ');
+                
+                alert(`🧠 Personalization Insights:\n\n` +
+                      `User ID: ${userId}\n` +
+                      `Total Interactions: ${insights.profile.totalInteractions}\n` +
+                      `Conversion Rate: ${(insights.profile.conversionRate * 100).toFixed(1)}%\n` +
+                      `Lifetime Value: ₹${insights.profile.lifetimeValue.toFixed(2)}\n\n` +
+                      `Top Categories: ${topCategories || 'None yet'}\n` +
+                      `Top Brands: ${topBrands || 'None yet'}\n\n` +
+                      `Similar Users: ${insights.similarUsers.length}\n` +
+                      `Recommendations: ${insights.recommendations.length}`);
+            } else {
+                alert('🧠 Personalization insights not available - personalization engine may not be loaded');
+            }
+        }
+        
+        function simulateUserActivity() {
+            if (window.shoprAnalytics) {
+                // Simulate some user events
+                window.shoprAnalytics.trackEvent({
+                    type: 'demo_interaction',
+                    action: 'button_click',
+                    timestamp: Date.now()
+                });
+                
+                window.shoprAnalytics.trackChatInteraction('demo_query', {
+                    query: 'simulated user query',
+                    timestamp: Date.now()
+                });
+                
+                alert('🎭 Simulated user activity! Check the metrics to see the updates.');
+            } else {
+                alert('📊 Cannot simulate activity - analytics not available');
+            }
+        }
+        
+        function toggleDebugMode() {
+            debugMode = !debugMode;
+            
+            if (window.ShoprProduction) {
+                if (debugMode) {
+                    window.ShoprProduction.enableDebug();
+                } else {
+                    window.ShoprProduction.disableDebug();
+                }
+            }
+            
+            alert(`🐛 Debug mode ${debugMode ? 'enabled' : 'disabled'}! Check the console for detailed logs.`);
+        }
+        
+        function sendSampleQuery(query) {
+            if (window.shoprChat) {
+                // Open chat if not already open
+                if (!window.shoprChat.isOpen) {
+                    window.shoprChat.openChat();
+                }
+                
+                // Set the query in the input and send it
+                setTimeout(() => {
+                    window.shoprChat.chatInput.value = query;
+                    window.shoprChat.sendMessage();
+                }, 500);
+            } else {
+                alert('💬 Chat SDK not available yet - please wait for it to load');
+            }
+        }
+        
+        // Update status display every 5 seconds
+        setInterval(updateStatusDisplay, 5000);
+        
+        // Initial status update after 3 seconds
+        setTimeout(updateStatusDisplay, 3000);
+        
+        // Log demo initialization
+        console.log('🎬 Shopr Production Demo initialized');
+        console.log('🔍 Available global objects:');
+        console.log('  • window.ShoprProduction - Production utilities');
+        console.log('  • window.shoprChat - Chat SDK instance');
+        console.log('  • window.shoprAnalytics - Analytics system');
+        console.log('  • window.shoprSecurity - Security manager');
+        console.log('  • window.shoprPersonalization - Personalization engine');
+        console.log('  • window.shoprProductionConfig - Production configuration');
+    </script>
+</body>
+</html>

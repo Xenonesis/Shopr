@@ -25,6 +25,9 @@ class ShoprChatSDK {
     this.chatHistory = [];
     this.userProfile = this.loadUserProfile();
     
+    // Initialize production systems
+    this.initializeProductionSystems();
+    
     // Initialize API Service (Real or Mock based on configuration)
     this.initializeAPIService();
     
@@ -40,6 +43,53 @@ class ShoprChatSDK {
     this.initSpeechRecognition();
     this.loadChatHistory();
     this.setupConfigurationListener();
+  }
+
+  initializeProductionSystems() {
+    // Initialize production analytics
+    if (window.ProductionAnalytics) {
+      this.analytics = new window.ProductionAnalytics({
+        userId: this.config.userId,
+        enableErrorTracking: true,
+        enablePerformanceTracking: true,
+        enableUserBehaviorTracking: true,
+        debug: this.config.debug || false
+      });
+      
+      console.log('📊 Production Analytics initialized');
+    }
+
+    // Initialize security manager
+    if (window.SecurityManager) {
+      this.security = new window.SecurityManager({
+        threatDetection: true,
+        encryption: true,
+        logging: true,
+        debug: this.config.debug || false
+      });
+      
+      console.log('🔒 Security Manager initialized');
+    }
+
+    // Initialize personalization engine
+    if (window.PersonalizationEngine) {
+      this.personalization = new window.PersonalizationEngine({
+        userId: this.config.userId,
+        userProfiling: true,
+        behaviorAnalysis: true,
+        recommendations: true,
+        realTimeAdaptation: true,
+        abTesting: true
+      });
+      
+      console.log('🧠 Personalization Engine initialized');
+    }
+
+    // Initialize production configuration
+    if (window.ProductionConfig) {
+      this.productionConfig = window.shoprProductionConfig || new window.ProductionConfig();
+      console.log('⚙️ Production Configuration loaded');
+    }
   }
 
   initializeAPIService() {
