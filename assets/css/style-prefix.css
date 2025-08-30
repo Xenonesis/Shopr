@@ -3208,3 +3208,32 @@ footer {
   }
 
 }
+
+/*-----------------------------------*\
+  #CURRENCY SELECTION STYLES
+\*-----------------------------------*/
+
+.submenu-title[data-currency] {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.submenu-title[data-currency]:hover {
+  color: var(--salmon-pink);
+  transform: translateX(5px);
+}
+
+.submenu-title[data-currency].active {
+  color: var(--salmon-pink);
+  font-weight: var(--weight-500);
+}
+
+.submenu-title[data-currency].active::after {
+  content: "✓";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--ocean-green);
+  font-weight: bold;
+}
